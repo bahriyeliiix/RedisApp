@@ -1,0 +1,6 @@
+﻿<h2>Received Notifications</h2>
+@if (TempData["Notification"] != null)
+{
+    <p>@TempData["Notification"]</p>
+}
+<button onclick="location.reload()">Refresh Notifications</button>

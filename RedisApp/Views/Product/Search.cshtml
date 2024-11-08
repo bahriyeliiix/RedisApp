@@ -1,0 +1,49 @@
+﻿@model List<Product>
+
+@{
+    ViewBag.Title = "Product Search";
+}
+
+<h2>Product Search</h2>
+
+<!-- Arama formu -->
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search Products:</label>
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" placeholder="Enter product name" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<hr />
+
+<!-- Arama sonuçları -->
+@if (Model != null && Model.Count > 0)
+{
+    <h3>Search Results:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found for the search term.</p>
+}
